@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
     private CurrentWeather mCurrentWeather;
 
-    @BindView(R.id.base)
-    RelativeLayout mLayout;
+    @BindView(R.id.base) RelativeLayout mLayout;
     @BindView(R.id.locationLabel) TextView mLocationLabel;
+    @BindView(R.id.countryLabel) TextView mCountryLabel;
     @BindView(R.id.timeLabel) TextView mTimeLabel;
     @BindView(R.id.temperatureLabel) TextView mTemperatureLabel;
     @BindView(R.id.humidityValue) TextView mHumidityValue;
@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
         final double latitude = 37.8267;
         final double longitude = -122.4233;
+
+        getForecast(latitude, longitude);
 
         mRefreshImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,7 +149,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateDisplay() {
-        mLocationLabel.setText(mCurrentWeather.getTimeZone());
+        mLocationLabel.setText(mCurrentWeather.getCity());
+        mCountryLabel.setText(mCurrentWeather.getCountry());
         mTemperatureLabel.setText(mCurrentWeather.getTemperature() + "");
         mTimeLabel.setText("At " + mCurrentWeather.getFormattedTime() + " it will be");
         mHumidityValue.setText(mCurrentWeather.getHumidity() + "");
@@ -218,6 +221,8 @@ public class MainActivity extends AppCompatActivity {
         currentWeather.setSummary(currently.getString("summary"));
         currentWeather.setTemperature(currently.getDouble("temperature"));
         currentWeather.setTimeZone(timezone);
+        currentWeather.setCity(timezone);
+        currentWeather.setCountry(timezone);
 
         Log.d(TAG, currentWeather.getFormattedTime());
 

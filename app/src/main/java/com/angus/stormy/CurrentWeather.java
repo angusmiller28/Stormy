@@ -13,6 +13,8 @@ import java.util.TimeZone;
  */
 
 public class CurrentWeather {
+    private String mCity;
+    private String mCountry;
     private double mHumidity;
     private String mIcon;
     private long mTime;
@@ -21,9 +23,30 @@ public class CurrentWeather {
     private String mSummary;
     private String mTimeZone;
 
+    public String getCountry() {
+        return mCountry;
+    }
+
+    public void setCountry(String country) {
+        String[] data = country.split("/");
+        String c = data[0];
+        mCountry = c.replace("_", " ");
+    }
+
+    public String getCity() {
+        return mCity;
+    }
+
+    public void setCity(String city) {
+        String[] data = city.split("/");
+        String c = data[1];
+        mCity = c.replace("_", " ");
+    }
+
     public String getTimeZone() {
         return mTimeZone;
     }
+
 
     public void setTimeZone(String timeZone) {
         mTimeZone = timeZone;
