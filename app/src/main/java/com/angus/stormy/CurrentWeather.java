@@ -1,8 +1,12 @@
 package com.angus.stormy;
 
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
+
 
 /**
  * Created by Angus on 10/01/2018.
@@ -119,4 +123,5 @@ public class CurrentWeather {
     public void setSummary(String summary) {
         mSummary = summary;
     }
+
 }

@@ -3,4 +3,15 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="colorPrimaryPartlyCloudyDay">#acc0ff</color>
+    <color name="colorPrimaryPartlyCloudyNight">#7383b6</color>
+    <color name="colorPrimaryClearNight">#1c4dc2</color>
+    <color name="colorPrimaryClearDay">#1db4da</color>
+    <color name="colorPrimaryRain">#a8d9df</color>
+    <color name="colorPrimarySnow">#ffffff</color>
+    <color name="colorPrimaryWind">#6ce421</color>
+    <color name="colorPrimaryFog">#b8b8b8</color>
+    <color name="colorPrimaryCloudy">#cddedd</color>
+    <color name="colorPrimarySleet">#7c7c7c</color>
 </resources>

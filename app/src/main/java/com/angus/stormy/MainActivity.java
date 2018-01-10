@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.nfc.Tag;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.angus.stormy.R;
@@ -13,8 +14,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
     private CurrentWeather mCurrentWeather;
 
+    @BindView(R.id.base)
+    RelativeLayout mLayout;
     @BindView(R.id.locationLabel) TextView mLocationLabel;
     @BindView(R.id.timeLabel) TextView mTimeLabel;
     @BindView(R.id.temperatureLabel) TextView mTemperatureLabel;
@@ -150,6 +156,51 @@ public class MainActivity extends AppCompatActivity {
 
         Drawable drawable = getResources().getDrawable(mCurrentWeather.getIconId());
         mIconImageView.setImageDrawable(drawable);
+
+        setWeatherTheme(mCurrentWeather.getIcon());
+
+    }
+
+    private void setWeatherTheme(String icon) {
+        Log.d(TAG, icon);
+
+        if (icon.equals("clear-day"))
+            setColorScheme(R.color.colorPrimaryClearDay);
+        else if (icon.equals("clear-night"))
+            setColorScheme(getResources().getColor(R.color.colorPrimaryClearNight));
+        else if (icon.equals("partly-cloudy-day"))
+            setColorScheme(getResources().getColor(R.color.colorPrimaryPartlyCloudyDay));
+        else if (icon.equals("partly-cloudy-night"))
+            setColorScheme(getResources().getColor(R.color.colorPrimaryPartlyCloudyNight));
+        else if (icon.equals("rain"))
+            setColorScheme(getResources().getColor(R.color.colorPrimaryRain));
+        else if (icon.equals("snow"))
+            setColorScheme(getResources().getColor(R.color.colorPrimarySnow));
+        else if (icon.equals("snow"))
+            setColorScheme(getResources().getColor(R.color.colorPrimarySleet));
+        else if (icon.equals("wind"))
+            setColorScheme(getResources().getColor(R.color.colorPrimaryWind));
+        else if (icon.equals("fog"))
+            setColorScheme(getResources().getColor(R.color.colorPrimaryFog));
+        else if (icon.equals("cloudy"))
+            setColorScheme(getResources().getColor(R.color.colorPrimaryCloudy));
+        else
+            setColorScheme(R.color.colorPrimaryWind);
+
+    }
+
+    private void setColorScheme(int color) {
+        ColorWheel colorWheel = new ColorWheel();
+        int mColor = colorWheel.makeDarkenColor(color);
+        mLayout.setBackgroundColor(color);
+
+        // change status bar color
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(mColor);
+        }
     }
 
     private CurrentWeather getCurrentDetails(String jsonData) throws JSONException {
