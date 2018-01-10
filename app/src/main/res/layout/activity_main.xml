@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="100"
+        android:text="--"
         android:textColor="@android:color/white"
         android:textSize="150sp" />
 
@@ -43,8 +43,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/timeLabel"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="60dp"
-        android:text="Alcatraz Island, CA"
+        android:layout_marginBottom="61dp"
+        android:text="Getting Location"
         android:textColor="@android:color/white"
         android:textSize="24sp" />
 
@@ -53,8 +53,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/locationLabel"
-        android:layout_toLeftOf="@+id/temperatureLabel"
-        android:layout_toStartOf="@+id/temperatureLabel"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_toLeftOf="@+id/locationLabel"
+        android:layout_toStartOf="@+id/locationLabel"
         app:srcCompat="@drawable/cloudy_night" />
 
     <LinearLayout
@@ -86,7 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="0.88"
+                android:text="--"
                 android:textColor="@android:color/white"
                 android:textSize="24sp" />
 
@@ -111,7 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="100"
+                android:text="--"
                 android:textColor="@android:color/white"
                 android:textSize="24sp" />
         </LinearLayout>
@@ -125,7 +127,24 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:gravity="center_horizontal"
-        android:text="Stormy with a chance of meatballs."
+        android:text="Getting current weather"
         android:textColor="@android:color/white"
         android:textSize="18dp" />
+
+    <ImageView
+        android:id="@+id/refreshImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/locationLabel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
+        app:srcCompat="@drawable/refresh" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/refreshImageView"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
